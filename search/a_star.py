@@ -11,7 +11,7 @@ def a_star_search(dis_map, time_map, start, end):
     Performs A* search algorithm to find the path from start to end.
 
     Args:
-        dis_map (dict): A dictionary containing the distance map.
+        dis_map (dict): A dictionary containing the distance (hops) map.
         time_map (dict): A dictionary containing the similarity map.
         start (str): The starting node.
         end (str): The goal node.

@@ -10,16 +10,11 @@ class QueueNode:
     Attributes:
         data: The data stored in the node.
         next: Reference to the next node in the linked list.
+        path: Path associated with this node. The path discovered until this
+              node in the search algorithm.
     """
 
     def __init__(self, data, path):
-        """
-        Initializes a new _QueueNode with the given data.
-
-        Args:
-            data: The data to be stored in the node.
-            path: Path until the node.
-        """
         self.data = data
         self.next = None
         self.path = path
@@ -58,7 +53,8 @@ class PriorityQueueNode:
 
     Attributes:
         data: The data stored in the node.
-        path: Path associated with this node.
+        path: Path associated with this node. The path discovered until this
+              node in the search algorithm.
         priority: Priority associated with this node.
         tiebreaking_priority: Tie-breaking Priority associated with this node.
         next: Reference to the next node in the linked list.

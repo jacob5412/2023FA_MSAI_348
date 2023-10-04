@@ -16,9 +16,6 @@ class LIFOQueue:
     """
 
     def __init__(self):
-        """
-        Initializes an empty stack.
-        """
         self.top = None
 
     def is_empty(self):
@@ -48,6 +45,7 @@ class LIFOQueue:
 
         Returns:
             data: The data popped from the top of the stack.
+            path: The path associated with this data.
 
         Raises:
             IndexError: If the stack is empty when pop is called.
