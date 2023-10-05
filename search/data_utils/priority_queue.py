@@ -34,7 +34,8 @@ class PriorityQueue:
     def enqueue(self, data, path, priority, tiebreaking_priority=None):
         """
         Enqueues (adds) an element to the queue and placed it based on
-        its priority. If element exists, update its attributes.
+        its priority and tie-breaking priority. If element exists,
+        update its attributes.
 
         Args:
             data: The data to be enqueued.
@@ -46,9 +47,13 @@ class PriorityQueue:
         if self._is_exists_and_update(data, path):
             pass
         else:
+            # insert in front of head if the head is empty or the
+            # priority is lower than head's priority.
             if self.is_empty() or priority < self.head.get_priority():
                 new_node.next = self.head
                 self.head = new_node
+            # insert in front of head if priority is the same as head's
+            # and the tie-breaking priority is less than head's
             elif (
                 priority == self.head.get_priority()
                 and tiebreaking_priority < self.head.get_tiebreaking_priority()
@@ -57,7 +62,12 @@ class PriorityQueue:
                 self.head = new_node
             else:
                 current = self.head
+                # keep traversing through the queue until we find a node with
+                # the same or greater priority than the current one
                 while current.get_next() and priority >= current.next.get_priority():
+                    # if the priority is the same as current node check if the
+                    # tie-breaking priority of current node is lesser; insert
+                    # it ahead if it is, else insert it behind
                     if (
                         priority == current.next.get_priority()
                         and tiebreaking_priority

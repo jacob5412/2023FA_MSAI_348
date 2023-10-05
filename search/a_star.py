@@ -36,7 +36,7 @@ def a_star_search(dis_map, time_map, start, end):
             if explored_set.is_exists(neighbor):
                 continue
             new_g_n_score = g_n_scores[current_node] + time_map[current_node][neighbor]
-            # not in frontier and the new g_n_score is lower
+            # not in frontier or the new g_n_score is lower
             if (
                 not frontier.is_exists(neighbor)
                 or new_g_n_score <= g_n_scores[neighbor]
