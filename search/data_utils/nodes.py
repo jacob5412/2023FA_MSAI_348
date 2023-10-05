@@ -1,19 +1,15 @@
 """
 Utilities module consisting of nodes used in Queue
 """
+from abc import ABC, abstractmethod
 
 
-class QueueNode:
+class Node(ABC):
     """
-    Represents a node in a class-based linked list for a FIFO and a LIFO queue.
-
-    Attributes:
-        data: The data stored in the node.
-        next: Reference to the next node in the linked list.
-        path: Path associated with this node. The path discovered until this
-              node in the search algorithm.
+    Represents a node.
     """
 
+    @abstractmethod
     def __init__(self, data, path):
         self.data = data
         self.next = None
@@ -47,7 +43,24 @@ class QueueNode:
         return self.path
 
 
-class PriorityQueueNode:
+class QueueNode(Node):
+    """
+    Represents a node in a class-based linked list for a FIFO and a LIFO queue.
+
+    Attributes:
+        data: The data stored in the node.
+        next: Reference to the next node in the linked list.
+        path: Path associated with this node. The path discovered until this
+              node in the search algorithm.
+    """
+
+    def __init__(self, data, path):
+        self.data = data
+        self.next = None
+        self.path = path
+
+
+class PriorityQueueNode(Node):
     """
     Represents a node in a class-based linked list for a Prority queue.
 
@@ -67,24 +80,6 @@ class PriorityQueueNode:
         self.tiebreaking_priority = tiebreaking_priority
         self.next = None
 
-    def get_data(self):
-        """
-        Gets the data stored in the node.
-
-        Returns:
-            The data stored in the node.
-        """
-        return self.data
-
-    def get_next(self):
-        """
-        Gets the reference to the next node in the linked list.
-
-        Returns:
-            The reference to the next node.
-        """
-        return self.next
-
     def get_priority(self):
         """
         Gets the priority associated with the node.
@@ -102,12 +97,3 @@ class PriorityQueueNode:
             The tie-breaking priority stored in the node.
         """
         return self.tiebreaking_priority
-
-    def get_path(self):
-        """
-        Gets the path associated with the node.
-
-        Returns:
-            The path stored in the node.
-        """
-        return self.path
