@@ -11,7 +11,7 @@ def a_star_search(dis_map, time_map, start, end):
     Performs A* search algorithm to find the path from start to end.
 
     Args:
-        dis_map (dict): A dictionary containing the distance map.
+        dis_map (dict): A dictionary containing the distance (hops) map.
         time_map (dict): A dictionary containing the similarity map.
         start (str): The starting node.
         end (str): The goal node.
@@ -36,7 +36,7 @@ def a_star_search(dis_map, time_map, start, end):
             if explored_set.is_exists(neighbor):
                 continue
             new_g_n_score = g_n_scores[current_node] + time_map[current_node][neighbor]
-            # not in frontier and the new g_n_score is lower
+            # not in frontier or the new g_n_score is lower
             if (
                 not frontier.is_exists(neighbor)
                 or new_g_n_score <= g_n_scores[neighbor]

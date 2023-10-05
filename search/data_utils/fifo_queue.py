@@ -17,9 +17,6 @@ class FIFOQueue:
     """
 
     def __init__(self):
-        """
-        Initializes an empty FIFOQueue.
-        """
         self.front = None
         self.rear = None
 
@@ -70,6 +67,7 @@ class FIFOQueue:
 
         Returns:
             data: The data dequeued from the front of the queue.
+            path: The path associated with this data.
 
         Raises:
             IndexError: If the queue is empty when dequeue is called.
