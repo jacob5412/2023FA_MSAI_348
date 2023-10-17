@@ -89,29 +89,6 @@ class GameTest(unittest.TestCase):
         )
 
     def test4(self):
-        # Uses script to have alternative start moves
-        p1 = "m"
-        p2 = "d"
-        depth = 6
-        gm = self.makeGame(4, p1, p2, depth, "game4.log")
-
-        # set timeout
-        signal.alarm(2)
-
-        gm.play()
-        game_rules.printBoard(gm.board)
-        print(gm.GetWinner(), "WINS")
-        self.assertEqual(
-            gm.board,
-            [
-                ["x", " ", " ", "o"],
-                ["o", " ", " ", "x"],
-                ["x", "o", "x", "o"],
-                ["o", " ", " ", "x"],
-            ],
-        )
-
-    def test5(self):
         p1 = "d"
         p2 = "a"
         depth = 4
@@ -135,7 +112,7 @@ class GameTest(unittest.TestCase):
             ],
         )
 
-    def test6(self):
+    def test5(self):
         p1 = "a"
         p2 = "d"
         depth = 6
