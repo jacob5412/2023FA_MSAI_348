@@ -6,3 +6,4 @@
    1. BFS
    2. DFS
    3. A*
+2. [Konane with Minimax](konane-minimax/)
