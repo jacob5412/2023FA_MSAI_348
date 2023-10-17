@@ -51,6 +51,14 @@ class Player(object):
 
 # This class has been replaced with the code for a deterministic player.
 class MinimaxPlayer(Player):
+    """
+    Initializes a MinimaxPlayer object.
+
+    Args:
+        symbol (str): The symbol ('x' or 'o') representing the player.
+        depth (int): The depth to search in the game tree.
+    """
+
     def __init__(self, symbol, depth):
         super(MinimaxPlayer, self).__init__(symbol)
         self.depth = depth
@@ -72,6 +80,18 @@ class MinimaxPlayer(Player):
         return self._get_max_value(board, depth, symbol)
 
     def _get_max_value(self, board, depth, symbol):
+        """
+        Computes the maximum value for a player in the Minimax algorithm.
+
+        Args:
+            board (list): The game board as a list of lists.
+            depth (int): The current depth in the game tree.
+            symbol (str): The symbol ('x' or 'o') representing the player.
+
+        Returns:
+            tuple: A tuple with the best move (row, column) and
+                   its corresponding value.
+        """
         legal_moves = game_rules.getLegalMoves(board, symbol)
         if depth == 0 or len(legal_moves) == 0:
             return None, self.h1(board)
@@ -91,6 +111,18 @@ class MinimaxPlayer(Player):
         return best_move, best_value
 
     def _get_min_value(self, board, depth, symbol):
+        """
+        Computes the minimum value for a player in the Minimax algorithm.
+
+        Args:
+            board (list): The game board as a list of lists.
+            depth (int): The current depth in the game tree.
+            symbol (str): The symbol ('x' or 'o') representing the player.
+
+        Returns:
+            tuple: A tuple with the best move (row, column) and
+                   its corresponding value.
+        """
         legal_moves = game_rules.getLegalMoves(board, symbol)
         if depth == 0 or len(legal_moves) == 0:
             return None, self.h1(board)
@@ -112,6 +144,14 @@ class MinimaxPlayer(Player):
 
 # This class has been replaced with the code for a deterministic player.
 class AlphaBetaPlayer(Player):
+    """
+    Initializes an AlphaBetaPlayer object.
+
+    Args:
+        symbol (str): The symbol ('x' or 'o') representing the player.
+        depth (int): The depth to search in the game tree.
+    """
+
     def __init__(self, symbol, depth):
         super(AlphaBetaPlayer, self).__init__(symbol)
         self.depth = depth
@@ -135,6 +175,20 @@ class AlphaBetaPlayer(Player):
         return self._get_max_value(board, alpha, beta, depth, symbol)
 
     def _get_max_value(self, board, alpha, beta, depth, symbol):
+        """
+        Computes the maximum value for a player using Alpha-Beta Pruning.
+
+        Args:
+            board (list): The game board as a list of lists.
+            alpha (int): The current best value for the maximizing player.
+            beta (int): The current best value for the minimizing player.
+            depth (int): The current depth in the game tree.
+            symbol (str): The symbol ('x' or 'o') representing the player.
+
+        Returns:
+            tuple: A tuple with the best move (row, column) and
+                   its corresponding value.
+        """
         legal_moves = game_rules.getLegalMoves(board, symbol)
         if depth == 0 or len(legal_moves) == 0:
             return None, self.h1(board)
@@ -150,6 +204,7 @@ class AlphaBetaPlayer(Player):
             if next_value > best_value:
                 best_value = next_value
                 best_move = legal_move
+            # prune when best value is more than than beta
             if best_value >= beta:
                 return best_move, best_value
             if next_value >= alpha:
@@ -157,6 +212,20 @@ class AlphaBetaPlayer(Player):
         return best_move, best_value
 
     def _get_min_value(self, board, alpha, beta, depth, symbol):
+        """
+        Computes the minimum value for a player using Alpha-Beta Pruning.
+
+        Args:
+            board (list): The game board as a list of lists.
+            alpha (int): The current best value for the maximizing player.
+            beta (int): The current best value for the minimizing player.
+            depth (int): The current depth in the game tree.
+            symbol (str): The symbol ('x' or 'o') representing the player.
+
+        Returns:
+            tuple: A tuple with the best move (row, column) and
+                   its corresponding value.
+        """
         legal_moves = game_rules.getLegalMoves(board, symbol)
         if depth == 0 or len(legal_moves) == 0:
             return None, self.h1(board)
@@ -172,6 +241,7 @@ class AlphaBetaPlayer(Player):
             if next_value < best_value:
                 best_value = next_value
                 best_move = legal_move
+            # prune when best value is less than alpha
             if best_value <= alpha:
                 return best_move, best_value
             if next_value <= beta:
