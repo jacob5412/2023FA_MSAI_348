@@ -1,9 +1,9 @@
-name: Search-UnitTests
+name: Knowledge-Base-UnitTests
 
 on:
   pull_request:
     paths:
-      - "search/**"
+      - "knowledge-base/**"
   push:
     branches:
       - main
@@ -20,4 +20,4 @@ jobs:
           python-version: 3.7
       - name: Run tests
         run: python runner.py
-        working-directory: ./search
+        working-directory: ./knowledge-base
