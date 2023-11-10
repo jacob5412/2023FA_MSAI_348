@@ -8,3 +8,4 @@
    3. A*
 2. [Konane with Minimax](konane-minimax/)
 3. [Knowledge Base](knowledge-base/)
+4. [Naïve Bayes](naive-bayes/)
