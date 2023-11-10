@@ -52,33 +52,10 @@ class NaiveBayesClassifier:
 
             # Calculate overall posterior probabilities
             for rating in posterior_probs:
-                observed_token_probabilities = [
-                    self.likelihood_probs.get(token, {}).get(rating, 0)
-                    for token in tokens
-                ]
-
-                # Filter out missing tokens (probabilities of 0)
-                observed_token_probabilities = [
-                    prob for prob in observed_token_probabilities if prob != 0
-                ]
-
-                # Use the average probability for observed tokens
-                average_line_probability = (
-                    (
-                        sum(observed_token_probabilities)
-                        / len(observed_token_probabilities)
-                    )
-                    * 0.01
-                    if len(observed_token_probabilities) > 0
-                    else 1e-5
-                )
-
-                # assign unseen tokens a small portion of the average
+                # assign unseen tokens a probability
                 for token in tokens:
                     posterior_probs[rating] += math.log(
-                        self.likelihood_probs.get(token, {}).get(
-                            rating, average_line_probability * 0.01
-                        )
+                        self.likelihood_probs.get(token, {}).get(rating, 1e-5)
                     )
             # Determine the predicted classes based on max posterior
             # probability of classes/ratings
@@ -114,7 +91,7 @@ class NaiveBayesClassifier:
             else:
                 self.likelihood_probs[token][rating] += 1
 
-    def _calculate_probs(self, alpha=1.0) -> None:
+    def _calculate_probs(self) -> None:
         """
         Calculate the prior probabilities and the likelihood
         probabilities.
@@ -128,16 +105,12 @@ class NaiveBayesClassifier:
                 self.likelihood_probs.get(token, {}).get(rating, 0)
                 for token in self.likelihood_probs
             )
-            self.prior_probs[rating] = (frequency + alpha) / (
-                total_reviews + alpha * len(self.prior_probs)
-            )
+            self.prior_probs[rating] = frequency / total_reviews
 
-        # Calculate likelihoods for each token ~ P(token|rating) with Laplace smoothing
+        # Calculate likelihoods for each token ~ P(token|rating)
         for _, ratings in self.likelihood_probs.items():
             for rating, frequency in ratings.items():
-                ratings[rating] = (frequency + alpha) / (
-                    total_words_per_rating[rating] + alpha * len(self.likelihood_probs)
-                )
+                ratings[rating] = frequency / total_words_per_rating[rating]
 
     @staticmethod
     def _split_data(line: str) -> list:
