@@ -19,5 +19,5 @@ jobs:
         with:
           python-version: 3.7
       - name: Run tests
-        run: python -m unittest
+        run: python -m unittest main
         working-directory: ./knowledge-base
