@@ -174,10 +174,8 @@ class NaiveBayesClassifier:
             "his", "her", "they", "them", "their", "our", "ours", "us", "he", "she", "it",
             "i", "me", "my", "mine", "we", "us", "our", "ours", "your", "yours", "he", "him",
             "his", "she", "her", "it", "its", "they", "them", "their", "theirs", "myself",
-            "yourself", "himself", "herself", "itself", "ourselves", "yourselves", "themselves",
             "all", "any", "both", "each", "every", "few", "more", "most", "other", "some",
             "such", "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very",
-            "s", "t", "can", "will", "just", "don", "should", "now", "could", "would", "also"
         ])
         # fmt: on
         tokens = [token for token in tokens if token not in stoptokens]
@@ -210,8 +208,8 @@ class NaiveBayesClassifier:
             str: The stemmed token.
         """
         # fmt: off
-        suffixes = ["ing", "ly", "ed", "es", "s", "er", 
-                    "est", "tion", "ive", "able", "ible"]
+        suffixes = ["ing", "ly", "ed", "es", "s", "er", "est", "tion", 
+                    "ive", "able", "ible", "en", "ify", "ize"]
         # fmt: on
 
         for suffix in suffixes:
