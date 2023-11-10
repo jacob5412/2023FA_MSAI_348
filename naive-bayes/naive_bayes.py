@@ -64,8 +64,11 @@ class NaiveBayesClassifier:
 
                 # Use the average probability for observed tokens
                 average_line_probability = (
-                    sum(observed_token_probabilities)
-                    / len(observed_token_probabilities)
+                    (
+                        sum(observed_token_probabilities)
+                        / len(observed_token_probabilities)
+                    )
+                    * 0.01
                     if len(observed_token_probabilities) > 0
                     else 1e-5
                 )
