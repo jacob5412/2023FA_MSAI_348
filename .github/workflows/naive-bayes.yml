@@ -1,0 +1,23 @@
+name: Naive-Bayes-UnitTests
+
+on:
+  pull_request:
+    paths:
+      - "naive-bayes/**"
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+      - name: Run tests
+        run: python main.py
+        working-directory: ./naive-bayes
