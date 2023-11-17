@@ -1,3 +1,29 @@
+"""
+Bayesian Network Unit Tests
+
+This test suite contains unit tests for the functionalities of the Bayesian Network module. It verifies the correctness
+of the 'ask' function from the 'joint_probs' module, specifically its behavior when querying probabilities in a predefined
+Bayesian Network scenario involving burglary, alarm, calls, and earthquakes.
+
+Classes:
+- BayesTest: Inherits from unittest.TestCase and includes test methods for various scenarios in the Bayesian Network.
+
+Usage:
+1. Create a BayesTest object: test_suite = BayesTest()
+2. Run individual tests: test_suite.test1(), test_suite.test2(), ..., test_suite.test5()
+3. Execute the entire test suite by running this file: python filename.py
+
+Each test checks the calculated probability against an expected value, ensuring the correctness of the Bayesian
+Network's inference capabilities.
+
+Example:
+    test_suite = BayesTest()
+    test_suite.test1()
+
+This suite helps validate the accuracy of the Bayesian Network's reasoning in different scenarios for informed
+decision-making and probabilistic analysis.
+"""
+
 import unittest
 
 from bayesnet import BayesNet, BayesNode

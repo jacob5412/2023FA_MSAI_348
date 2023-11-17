@@ -1,5 +1,5 @@
 """
-Student Code
+Code for join probabilities
 """
 import copy
 

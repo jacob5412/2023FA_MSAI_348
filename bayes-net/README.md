@@ -1,6 +1,5 @@
 # Bayes Nets
 
-
 ## Context
 
 Up until now, the reasoning that we've done has relied on our being _certain_ about the
@@ -43,12 +42,8 @@ The function takes four arguments:
 
 To calculate $P(H|E)$, `ask` should calculate and return $\frac{P(H,E)}{\alpha}$, where:
 
-* $P(H,E)$ is the joint probability of the hypothesis (`var` = `value`) and the
-  evidence (`evidence`), and
-
-* $\alpha$ is the Normalization Constant (the joint probability of the hypothesis and the
-  evidence plus the joint probability of $\neg$hypothesis and the
-  evidence). 
+* $P(H,E)$ is the joint probability of the hypothesis (`var` = `value`) and the evidence (`evidence`), and
+* $\alpha$ is the Normalization Constant (the joint probability of the hypothesis and the evidence plus the joint probability of $\neg$hypothesis and the evidence). 
 
 See below for more details on calculate $P(H,E)$ and $\alpha$.
 
