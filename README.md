@@ -9,3 +9,4 @@
 2. [Konane with Minimax](konane-minimax/)
 3. [Knowledge Base](knowledge-base/)
 4. [Naïve Bayes](naive-bayes/)
+5. [Bayes Net](bayes-net/)
